@@ -1,0 +1,33 @@
+{
+  "name": "comic-web",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src",
+    "format": "prettier .  --write",
+    "test": "vitest --dom"
+  },
+  "dependencies": {
+    "happy-dom": "^8.9.0",
+    "jest": "^29.5.0",
+    "sass": "^1.60.0",
+    "superagent": "^8.0.9",
+    "vue": "^3.2.47"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.1.0",
+    "@vue/test-utils": "^2.3.2",
+    "eslint": "^8.36.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-vue": "^9.10.0",
+    "prettier": "2.8.7",
+    "pug": "^3.0.2",
+    "pug-plain-loader": "^1.1.0",
+    "vite": "^4.2.0",
+    "vitest": "^0.29.8"
+  }
+}

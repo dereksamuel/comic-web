@@ -1,0 +1,23 @@
+@import "./variables.scss";
+@import "./font-faces.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Comic Neue", Courier, monospace;
+  color: $color-primary;
+}
+
+html {
+  font-size: 16px;
+}
+
+body, html, #app {
+  height: 100%;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 3rem;
+}
