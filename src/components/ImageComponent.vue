@@ -8,7 +8,7 @@ import ErrorImage from "@/assets/ErrorImage.png";
 
 const props = defineProps({
   src: String,
-});;
+});
 
 const state = reactive({
   src: computed(() => props.src || ErrorImage),

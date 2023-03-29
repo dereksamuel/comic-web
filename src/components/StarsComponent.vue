@@ -6,7 +6,10 @@
 </template>
 
 <script setup>
-const emit = defineEmits(["selected"])
+import { useStore } from "vuex";
+
+const emit = defineEmits(["selected"]);
+const store = useStore();
 
 function onCleanStar(star) {
   star.classList.add("star--inactive");
@@ -25,8 +28,10 @@ function onSelectStar(index) {
 
   if (star.classList.contains("star--active")) {
     // When points are 0
+    store.dispatch("comics/onStarSelection", -1);
     onCleanStar(star);
   } else {
+    store.dispatch("comics/onStarSelection", index);
     star.classList.remove("star--inactive");
     star.classList.add("star--active");
     emit("selected", index)

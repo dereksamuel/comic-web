@@ -1,38 +1,25 @@
 <!-- eslint-disable no-unused-vars -->
 <script setup>
-import { onMounted, reactive } from "vue";
+import { onMounted, reactive, computed } from "vue";
+import { useStore } from "vuex";
 import ImageComponent from "./components/ImageComponent.vue";
 import StarsComponent from "./components/StarsComponent.vue";
-import superagent from "superagent";
 
-const state = reactive({
-  corsHeader: "https://any-api.com:8443",
-  apiUrl: `http://xkcd.com/${Math.ceil(Math.random() * 2755)}`,
-  apiUrlFormat: "info.0.json",
-  response: null
-});
+const store = useStore();
 
-const getComics = () => {
-  const requestUrl = `${state.corsHeader}/${state.apiUrl}/${state.apiUrlFormat}`;
-  superagent
-    .get(requestUrl)
-    .end((error, response) => {
-      if (error) {
-        console.error(error);
-      }
-      state.response = response.body;
-    })
-};
+let currentComic = computed(() => {
+  return store.state.comics.current_comic;
+})
 
 onMounted(() => {
-  getComics();
+  store.dispatch("comics/onGetCurrentComic");
 });
 </script>
 
 <template lang="pug">
 .app-container
-  h1.title.app-container__title {{ state.response?.title }}
-  image-component(:src="state.response?.img")
+  h1.title.app-container__title {{ currentComic?.title }}
+  image-component(:src="currentComic?.img")
   stars-component
 </template>
 
