@@ -1,5 +1,7 @@
 export const getStorage = (key) => {
-  const result = localStorage.getItem(key) ? JSON.parse(localStorage.getItem(key)) : [];
+  const result = localStorage.getItem(key)
+    ? JSON.parse(localStorage.getItem(key))
+    : [];
   return result;
 };
 

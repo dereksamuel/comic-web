@@ -8,5 +8,5 @@ export const comics = {
   state,
   mutations,
   actions,
-  getters
+  getters,
 };

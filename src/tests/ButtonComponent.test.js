@@ -14,8 +14,8 @@ describe("Button", () => {
 
     const button2 = mount(ButtonComponent, {
       slots: {
-        default: "Hello"
-      }
+        default: "Hello",
+      },
     });
     expect(button2.text()).not.toContain("No hay contenido");
   });

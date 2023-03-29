@@ -8,7 +8,7 @@ import ErrorImage from "@/assets/ErrorImage.png";
 
 const props = defineProps({
   src: String,
-  isRated: Boolean
+  isRated: Boolean,
 });
 
 const state = reactive({
@@ -19,7 +19,7 @@ const state = reactive({
 function onImageError(event) {
   console.error(event);
   state.src = ErrorImage;
-};
+}
 </script>
 
 <style lang="scss" scoped>

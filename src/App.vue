@@ -1,25 +1,29 @@
 <!-- eslint-disable no-unused-vars -->
 <script setup>
-import { onMounted, reactive, computed } from "vue";
+import { onMounted, computed } from "vue";
 import { useStore } from "vuex";
 import ImageComponent from "./components/ImageComponent.vue";
 import StarsComponent from "./components/StarsComponent.vue";
 import ButtonComponent from "./components/ButtonComponent.vue";
+import LoadingComponent from "./components/LoadingComponent.vue";
 
 const store = useStore();
 
+// COMPUTED PROPS
 let currentComic = computed(() => {
   return store.state.comics.current_comic;
 });
-
+let loading = computed(() => {
+  return store.state.comics.loading;
+});
 let ratedComics = computed(() => {
   return store.state.comics.rated_comics;
 });
 
+// METHODS
 function onSave() {
   store?.dispatch("comics/onStarSelection");
 }
-
 function onCleanAll() {
   store?.dispatch("comics/onCleanAll");
 }
@@ -31,6 +35,7 @@ onMounted(() => {
 
 <template lang="pug">
 .app-container
+  loading-component(v-if="loading")
   .current-comic
     h1.title.current-comic__title {{ currentComic?.title }}
     image-component(:src="currentComic?.img")

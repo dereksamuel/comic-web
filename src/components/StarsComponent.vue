@@ -10,7 +10,6 @@
 </template>
 
 <script setup>
-
 import { useStore } from "vuex";
 
 const emit = defineEmits(["selected"]);
@@ -18,7 +17,7 @@ const store = useStore();
 
 const props = defineProps({
   isDisabled: Boolean,
-  starsLength: Number
+  starsLength: Number,
 });
 
 // eslint-disable-next-line no-unused-vars
@@ -37,7 +36,9 @@ function onCleanStar(star) {
 // eslint-disable-next-line no-unused-vars
 function onSelectStar(index) {
   const star = document.querySelector(`#star-${index}`);
-  const stars = [...document.querySelectorAll("#stars.current-stars button")].filter((s) => s.id !== `star-${index}`);
+  const stars = [
+    ...document.querySelectorAll("#stars.current-stars button"),
+  ].filter((s) => s.id !== `star-${index}`);
   if (stars && stars.length) {
     stars.forEach((star) => {
       onCleanStar(star);
@@ -50,7 +51,10 @@ function onSelectStar(index) {
     // store.dispatch("comics/onStarSelection", -1);
     onCleanStar(star);
   } else {
-    store?.commit("comics/setState", { key: "starsLengthState", value: index + 1 });
+    store?.commit("comics/setState", {
+      key: "starsLengthState",
+      value: index + 1,
+    });
     // store?.dispatch("comics/onStarSelection", index);
     star?.classList.remove("star--inactive");
     star?.classList.add("star--active");

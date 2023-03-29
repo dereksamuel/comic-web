@@ -4,6 +4,6 @@ import { comics } from "./comics";
 export const store = createStore({
   namespaced: true,
   modules: {
-    comics
-  }
+    comics,
+  },
 });
