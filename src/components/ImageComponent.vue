@@ -1,5 +1,5 @@
 <template lang="pug">
-img(:src="state.src" @error="onImageError").image-component
+img(:src="state.src" @error="onImageError" :class="isRated ? 'image-rated' : 'image-component'")
 </template>
 
 <script setup>
@@ -8,6 +8,7 @@ import ErrorImage from "@/assets/ErrorImage.png";
 
 const props = defineProps({
   src: String,
+  isRated: Boolean
 });
 
 const state = reactive({
@@ -22,10 +23,15 @@ function onImageError(event) {
 </script>
 
 <style lang="scss" scoped>
-.image-component {
-  max-width: 100%;
+.image-component,
+.image-rated {
+  max-width: 650px;
   object-fit: cover;
   display: inline-block;
   object-position: center;
+}
+
+.image-rated {
+  max-width: 400px;
 }
 </style>

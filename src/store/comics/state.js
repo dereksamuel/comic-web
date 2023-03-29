@@ -6,5 +6,6 @@ export const state = {
   api_url_format: "info.0.json",
   loading: true,
   current_comic: null,
-  rated_comics: getStorage("rated_comics")
+  rated_comics: getStorage("rated_comics"),
+  starsLengthState: 0,
 };

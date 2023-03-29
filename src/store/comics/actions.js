@@ -17,9 +17,9 @@ export const actions = {
       })
   },
 
-  onStarSelection({ state }, rate) {
+  onStarSelection({ state }) {
     const rated_comic = {
-      rate: rate + 1,
+      rate: state.starsLengthState,
       ...state.current_comic
     };
     let rated_comics = JSON.parse(JSON.stringify(getStorage("rated_comics")));
@@ -29,5 +29,10 @@ export const actions = {
     }
 
     setStorage("rated_comics", [...rated_comics, rated_comic]);
+  },
+
+  onCleanAll({ commit }) {
+    commit("setState", { key: "rated_comics", value: [] });
+    setStorage("rated_comics", []);
   }
 };
