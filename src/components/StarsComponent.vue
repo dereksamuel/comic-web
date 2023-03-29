@@ -77,7 +77,7 @@ function onSelectStar(index) {
   justify-content: center;
   flex-direction: row-reverse;
   gap: 1.25rem;
-  padding: 2.5rem;
+  padding: 2.5rem 0.5rem;
   max-width: 550px;
   margin: 0 auto;
   position: relative;

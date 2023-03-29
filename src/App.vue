@@ -30,7 +30,11 @@ function onSave() {
 function onCleanAll() {
   store?.dispatch("comics/onCleanAll");
 }
+function onClearOne(num) {
+  store?.dispatch("comics/onClearOne", num);
+}
 function onGetRandomicComic(isRandom) {
+  store.commit("comics/setState", { key: "starsLengthState", value: 0 });
   if (isRandom) {
     const stars = [
       ...document.querySelectorAll("#stars.current-stars button"),
@@ -64,7 +68,7 @@ onMounted(() => {
   transition(name="fadeIn")
     loading-component(v-if="loading")
   .current-comic
-    h1.title.current-comic__title {{ currentComic?.title }}
+    h1.title.current-comic__title--main {{ currentComic?.title }}
     image-component(:src="currentComic?.img")
     stars-component
     .current-comic__buttons
@@ -73,11 +77,14 @@ onMounted(() => {
   .rated-comics
     h1.title.rated-comics__title
       | Calificados{{ ratedComics && `: ${ratedComics.length}` }}
-      button(@click="onCleanAll").non-styles
+      button(@click="onCleanAll" :disabled="!ratedComics || !ratedComics.length").non-styles
         span.material-symbols-outlined.icon-delete delete
     ul.list-rated(v-if="ratedComics && ratedComics.length")
       li.list-rated__item(v-for="comic in ratedComics" :key="comic.num")
-        h1.subtitle.current-comic__title {{ comic?.title }}
+        h1.subtitle.current-comic__title
+          | {{ comic?.title }}
+          button(@click="() => onClearOne(comic.num)").non-styles
+            span.material-symbols-outlined.icon-delete close
         image-component(:src="comic?.img" :isRated="true")
         stars-component(:starsLength="comic.rate" :isDisabled="true")
 </template>
@@ -116,8 +123,17 @@ onMounted(() => {
     }
   }
 
-  &__title {
+  &__title,
+  &__title--main {
+    text-align: center;
     margin-bottom: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &--main {
+      justify-content: center;
+    }
   }
 }
 
@@ -129,15 +145,20 @@ onMounted(() => {
 
   &__title {
     color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    max-width: 80%;
+    margin: 0 auto;
+    margin-bottom: 2.5rem;
   }
 }
 
 .list-rated {
   display: grid;
   gap: 3.75rem;
+
+  &__item {
+    max-width: 80%;
+    margin: 0 auto;
+  }
 }
 
 .fadeIn-enter-active {
@@ -167,6 +188,20 @@ onMounted(() => {
     height: fit-content;
     max-height: fit-content;
     flex: none;
+
+    .list-rated {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+
+  .current-comic,
+  .rated-comics {
+    .list-rated {
+      grid-template-columns: 1fr;
+    }
   }
 }
 

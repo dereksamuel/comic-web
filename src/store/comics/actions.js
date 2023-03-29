@@ -44,4 +44,12 @@ export const actions = {
     commit("setState", { key: "rated_comics", value: [] });
     setStorage("rated_comics", []);
   },
+
+  onClearOne({ state, commit }, num) {
+    const rated_comics = state.rated_comics.filter((rc) => rc.num !== num);
+
+    toastr.success(`Eliminación del comic #${num} exitosa!`);
+    commit("setState", { key: "rated_comics", value: rated_comics });
+    setStorage("rated_comics", rated_comics);
+  },
 };
