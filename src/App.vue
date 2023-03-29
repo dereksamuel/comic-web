@@ -1,7 +1,8 @@
+<!-- eslint-disable no-unused-vars -->
 <script setup>
 import { onMounted, reactive } from "vue";
-// eslint-disable-next-line no-unused-vars
 import ImageComponent from "./components/ImageComponent.vue";
+import StarsComponent from "./components/StarsComponent.vue";
 import superagent from "superagent";
 
 const state = reactive({
@@ -20,7 +21,6 @@ const getComics = () => {
         console.error(error);
       }
       state.response = response.body;
-      console.log(state.response);
     })
 };
 
@@ -32,20 +32,18 @@ onMounted(() => {
 <template lang="pug">
 .app-container
   h1.title.app-container__title {{ state.response?.title }}
-  ImageComponent(:src="state.response?.img")
+  image-component(:src="state.response?.img")
+  stars-component
 </template>
 
 <style lang="scss" scoped>
 .app-container {
   padding: 2.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  max-width: 550px;
   height: 100%;
   overflow-y: auto;
   margin: 0 auto;
+  vertical-align: middle;
+  text-align: center;
 
   &__title {
     margin-bottom: 2.5rem;

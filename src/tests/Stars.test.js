@@ -14,10 +14,9 @@ describe("Stars", () => {
     expect(starsCount).toEqual(5);
   });
 
-  it("When a star is active it must has star--active class", () => {
+  it("When a star is active it must was emitted", () => {
     const stars = mount(StarsComponent);
-    // FIXME: Fix the click
-    // stars.element.querySelectorAll(".star--inactive")[0]
-    // expect(starsCount).toEqual(5);
+    stars.find("button").trigger("click");
+    expect(stars.emitted()).toHaveProperty("selected");
   });
 });

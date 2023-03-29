@@ -25,6 +25,7 @@ function onImageError(event) {
 .image-component {
   max-width: 100%;
   object-fit: cover;
+  display: inline-block;
   object-position: center;
 }
 </style>
