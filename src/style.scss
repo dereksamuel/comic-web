@@ -1,5 +1,6 @@
 @import "./variables.scss";
 @import "./font-faces.scss";
+@import "./toastr.min.scss";
 
 * {
   margin: 0;
@@ -10,14 +11,79 @@
 }
 
 html {
+  font: $parragraph;
   font-size: 16px;
 }
 
-body, html, #app {
+body,
+html,
+#app {
   height: 100%;
 }
 
 .title {
-  font-weight: bold;
-  font-size: 3rem;
+  font: $title;
+}
+
+.subtitle {
+  font: $subtitle;
+  color: white;
+}
+
+.non-styles {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin-left: 1.25rem;
+}
+
+.icon-delete {
+  color: $color-danger;
+  font-size: 2.5rem;
+}
+
+.toast-message {
+  color: white;
+}
+
+*::-webkit-scrollbar {
+  width: 8px; /* Tamaño del scroll en vertical */
+  height: 8px; /* Tamaño del scroll en horizontal */
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+/* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+*::-webkit-scrollbar-thumb:hover {
+  background: #8d8d8d;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* Cambiamos el fondo cuando esté en active */
+*::-webkit-scrollbar-thumb:active {
+  background-color: #999999;
+}
+
+*::-webkit-scrollbar-track {
+  background: #949494;
+  border-radius: 4px;
+}
+
+*::-webkit-scrollbar-track:hover,
+*::-webkit-scrollbar-track:active {
+  background: #d4d4d4;
+}
+
+@media screen and (max-width: 544px) {
+  .title {
+    font: $title-responsive;
+  }
+
+  .subtitle {
+    font: $subtitle-responsive;
+  }
 }

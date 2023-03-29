@@ -16,7 +16,9 @@
     "jest": "^29.5.0",
     "sass": "^1.60.0",
     "superagent": "^8.0.9",
-    "vue": "^3.2.47"
+    "toastr": "^2.1.4",
+    "vue": "^3.2.47",
+    "vuex": "^4.1.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.1.0",
