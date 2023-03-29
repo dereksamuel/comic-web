@@ -1,8 +1,8 @@
 <template lang="pug">
-.loading-container
+.loading-container#loading
   .loading-bg
   .loading-content
-    #loading.lds-roller
+    .lds-roller
       div
       div
       div

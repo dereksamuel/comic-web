@@ -19,6 +19,9 @@ let loading = computed(() => {
 let ratedComics = computed(() => {
   return store.state.comics.rated_comics;
 });
+let apiUrl = computed(() => {
+  return store.state.comics.api_url;
+});
 
 // METHODS
 function onSave() {
@@ -27,23 +30,49 @@ function onSave() {
 function onCleanAll() {
   store?.dispatch("comics/onCleanAll");
 }
+function onGetRandomicComic(isRandom) {
+  if (isRandom) {
+    const stars = [
+      ...document.querySelectorAll("#stars.current-stars button"),
+    ];
+    if (stars && stars.length) {
+      stars.forEach((star) => {
+        star.classList.add("star--inactive");
+        star.classList.remove("star--active");
+      });
+    }
+    // eslint-disable-next-line no-constant-condition
+    while (true) {
+      const value = Math.ceil(Math.random() * 2755);
+      if (value !== parseInt(apiUrl.value.split("http://xkcd.com/")[1])) {
+        store.commit("comics/setState", { key: "api_url", value: `http://xkcd.com/${value}` });
+        break;
+      }
+    }
+  }
+
+  store.dispatch("comics/onGetCurrentComic");
+}
 
 onMounted(() => {
-  store.dispatch("comics/onGetCurrentComic");
+  onGetRandomicComic();
 });
 </script>
 
 <template lang="pug">
 .app-container
-  loading-component(v-if="loading")
+  transition(name="fadeIn")
+    loading-component(v-if="loading")
   .current-comic
     h1.title.current-comic__title {{ currentComic?.title }}
     image-component(:src="currentComic?.img")
     stars-component
-    button-component(@click="onSave") Guardar calificación
+    .current-comic__buttons
+      button-component(@click="onSave") Guardar calificación
+      button-component(@click="() => onGetRandomicComic(true)") Ver otro comic
   .rated-comics
     h1.title.rated-comics__title
-      | Cómics calificados{{ ratedComics && `: ${ratedComics.length}` }}
+      | Calificados{{ ratedComics && `: ${ratedComics.length}` }}
       button(@click="onCleanAll").non-styles
         span.material-symbols-outlined.icon-delete delete
     ul.list-rated(v-if="ratedComics && ratedComics.length")
@@ -75,6 +104,18 @@ onMounted(() => {
   vertical-align: middle;
   text-align: center;
 
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: fit-content;
+    margin: 0 auto;
+
+    button:nth-child(2) {
+      margin-left: 1.25rem;
+    }
+  }
+
   &__title {
     margin-bottom: 2.5rem;
   }
@@ -97,6 +138,23 @@ onMounted(() => {
 .list-rated {
   display: grid;
   gap: 3.75rem;
+}
+
+.fadeIn-enter-active {
+  animation: fadeIn .5s;
+}
+
+.fadeIn-leave-active {
+  animation: fadeIn .5s reverse;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @media screen and (max-width: 1500px) {

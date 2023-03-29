@@ -15,11 +15,19 @@ const slots = useSlots();
 @import "../variables.scss";
 
 .button {
+  display: block;
+  margin: 0 auto;
   border: 3px solid $color-primary;
   padding: 1.25rem;
   border-radius: 0.625rem;
   font-weight: bold;
-  font-size: 1.25rem;
+  font: $parragraph;
   cursor: pointer;
+}
+
+@media screen and (max-width: 544px) {
+  .button {
+    font: $parragraph-responsive;
+  }
 }
 </style>

@@ -33,9 +33,7 @@ function onCleanStar(star) {
   star.classList.remove("star--active");
 }
 
-// eslint-disable-next-line no-unused-vars
-function onSelectStar(index) {
-  const star = document.querySelector(`#star-${index}`);
+function onCleanStars(index = 180) {
   const stars = [
     ...document.querySelectorAll("#stars.current-stars button"),
   ].filter((s) => s.id !== `star-${index}`);
@@ -44,6 +42,12 @@ function onSelectStar(index) {
       onCleanStar(star);
     });
   }
+}
+
+// eslint-disable-next-line no-unused-vars
+function onSelectStar(index) {
+  const star = document.querySelector(`#star-${index}`);
+  onCleanStars(index);
 
   if (star?.classList.contains("star--active")) {
     // When points are 0
