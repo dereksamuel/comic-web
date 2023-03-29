@@ -93,4 +93,30 @@ onMounted(() => {
   display: grid;
   gap: 3.75rem;
 }
+
+@media screen and (max-width: 1500px) {
+  .app-container {
+    flex-direction: column;
+  }
+
+  .current-comic,
+  .rated-comics {
+    height: fit-content;
+    max-height: fit-content;
+    flex: none;
+  }
+}
+
+@media screen and (max-width: 544px) {
+  .app-container {
+    flex-direction: column;
+  }
+
+  .current-comic,
+  .rated-comics {
+    height: fit-content;
+    max-height: fit-content;
+    flex: none;
+  }
+}
 </style>

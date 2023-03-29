@@ -34,4 +34,14 @@ function onImageError(event) {
 .image-rated {
   max-width: 400px;
 }
+
+@media screen and (max-width: 790px) {
+  .image-component {
+    max-width: 100%;
+  }
+
+  .image-rated {
+    max-width: 90%;
+  }
+}
 </style>
