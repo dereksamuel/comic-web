@@ -1,5 +1,5 @@
 # ComicWeb
-Esta es una aplicacion que consume el API de xkcd y tiene como objetivo el calificar esos comics.
+Esta es una aplicacion que consume el API de xkcd y tiene como objetivo el calificar esos comics. El link del ComicWeb lo puede encontrar aqui: https://comic-web-sage.vercel.app/
 
 ## Para usar la aplicacion
 1. Para poder correr el proyecto localmente(en un entorno de desarrollo dev) en la terminal escriba el siguiente comando:
