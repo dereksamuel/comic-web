@@ -2,6 +2,8 @@
 @import "./font-faces.scss";
 @import "./toastr.min.scss";
 
+// ----------------- GENERAL STYLES -----------------
+
 * {
   margin: 0;
   padding: 0;
@@ -47,6 +49,8 @@ html,
   color: white;
 }
 
+// ----------------- SCROLL STYLES -----------------
+
 *::-webkit-scrollbar {
   width: 8px; /* Tamaño del scroll en vertical */
   height: 8px; /* Tamaño del scroll en horizontal */
@@ -77,6 +81,8 @@ html,
 *::-webkit-scrollbar-track:active {
   background: #d4d4d4;
 }
+
+// ----------------- GENERAL MEDIA SCREEN STYLES -----------------
 
 @media screen and (max-width: 544px) {
   .title {

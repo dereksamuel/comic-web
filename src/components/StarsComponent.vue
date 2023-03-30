@@ -52,14 +52,12 @@ function onSelectStar(index) {
   if (star?.classList.contains("star--active")) {
     // When points are 0
     store.commit("comics/setState", { key: "starsLengthState", value: 0 });
-    // store.dispatch("comics/onStarSelection", -1);
     onCleanStar(star);
   } else {
     store?.commit("comics/setState", {
       key: "starsLengthState",
       value: index + 1,
     });
-    // store?.dispatch("comics/onStarSelection", index);
     star?.classList.remove("star--inactive");
     star?.classList.add("star--active");
   }
