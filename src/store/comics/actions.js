@@ -36,6 +36,7 @@ export const actions = {
 
     toastr.options.positionClass = "toast-top-left";
     toastr.success("Calificación guardada!");
+  
     commit("setState", { key: "rated_comics", value });
     setStorage("rated_comics", value);
   },
