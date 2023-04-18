@@ -48,6 +48,7 @@ function onGetRandomicComic(isRandom) {
     // eslint-disable-next-line no-constant-condition
     while (true) {
       const value = Math.ceil(Math.random() * 2755);
+      // que por esa iteracion no se muestre el comic, pero lo mas efectivo es tener un array de esos comics que ya vi y hacer la evaluacion de abajo
       if (value !== parseInt(apiUrl.value.split("http://xkcd.com/")[1])) {
         store.commit("comics/setState", { key: "api_url", value: `http://xkcd.com/${value}` });
         break;

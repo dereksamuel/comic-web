@@ -36,13 +36,13 @@ function onCleanStar(star) {
 function onCleanStars(index = 180) {
   const stars = [
     ...document.querySelectorAll("#stars.current-stars button"),
-  ].filter((s) => s.id !== `star-${index}`);
+  ].filter((s) => s.id !== `star-${index}`); // quita la class active pero no a la que seleccione
   if (stars && stars.length) {
     stars.forEach((star) => {
       onCleanStar(star);
     });
   }
-}
+} // se puede mejorar con un forEach sin .filter
 
 // eslint-disable-next-line no-unused-vars
 function onSelectStar(index) {
@@ -138,7 +138,7 @@ function onSelectStar(index) {
       }
       opacity: 0.8;
       transform: rotate(360deg);
-    }
+    } /* Desde el x button selecciona a los que le siguen contando desde el primero, no obstante yo inverti la lista de estrellas */
 
     &:disabled {
       cursor: auto;
